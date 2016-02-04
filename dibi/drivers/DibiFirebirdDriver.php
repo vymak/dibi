@@ -269,7 +269,7 @@ class DibiFirebirdDriver extends DibiObject implements IDibiDriver, IDibiResultD
 				return "'" . str_replace("'", "''", $value) . "'";
 
 			case dibi::IDENTIFIER:
-				return $value;
+				return '"' . str_replace('"', '""', $value). '"';
 
 			case dibi::BOOL:
 				return $value ? 1 : 0;
