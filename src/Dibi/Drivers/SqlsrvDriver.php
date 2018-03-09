@@ -148,7 +148,7 @@ class SqlsrvDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Begins a transaction (if supported).
 	 * @throws Dibi\DriverException
 	 */
-	public function begin(string $savepoint = null): void
+	public function begin(?string $savepoint = null): void
 	{
 		sqlsrv_begin_transaction($this->connection);
 	}
@@ -158,7 +158,7 @@ class SqlsrvDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Commits statements in a transaction.
 	 * @throws Dibi\DriverException
 	 */
-	public function commit(string $savepoint = null): void
+	public function commit(?string $savepoint = null): void
 	{
 		sqlsrv_commit($this->connection);
 	}
@@ -168,7 +168,7 @@ class SqlsrvDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Rollback changes in a transaction.
 	 * @throws Dibi\DriverException
 	 */
-	public function rollback(string $savepoint = null): void
+	public function rollback(?string $savepoint = null): void
 	{
 		sqlsrv_rollback($this->connection);
 	}

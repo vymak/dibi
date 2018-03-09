@@ -148,7 +148,7 @@ class FirebirdDriver implements Dibi\Driver, Dibi\ResultDriver, Dibi\Reflector
 	 * Begins a transaction (if supported).
 	 * @throws Dibi\DriverException
 	 */
-	public function begin(string $savepoint = null): void
+	public function begin(?string $savepoint = null): void
 	{
 		if ($savepoint !== null) {
 			throw new Dibi\NotSupportedException('Savepoints are not supported in Firebird/Interbase.');
@@ -162,7 +162,7 @@ class FirebirdDriver implements Dibi\Driver, Dibi\ResultDriver, Dibi\Reflector
 	 * Commits statements in a transaction.
 	 * @throws Dibi\DriverException
 	 */
-	public function commit(string $savepoint = null): void
+	public function commit(?string $savepoint = null): void
 	{
 		if ($savepoint !== null) {
 			throw new Dibi\NotSupportedException('Savepoints are not supported in Firebird/Interbase.');
@@ -180,7 +180,7 @@ class FirebirdDriver implements Dibi\Driver, Dibi\ResultDriver, Dibi\Reflector
 	 * Rollback changes in a transaction.
 	 * @throws Dibi\DriverException
 	 */
-	public function rollback(string $savepoint = null): void
+	public function rollback(?string $savepoint = null): void
 	{
 		if ($savepoint !== null) {
 			throw new Dibi\NotSupportedException('Savepoints are not supported in Firebird/Interbase.');
@@ -596,7 +596,7 @@ class FirebirdDriver implements Dibi\Driver, Dibi\ResultDriver, Dibi\Reflector
 	 * Returns metadata for all triggers in a table or database.
 	 * (Only if user has permissions on ALTER TABLE, INSERT/UPDATE/DELETE record in table)
 	 */
-	public function getTriggersMeta(string $table = null): array
+	public function getTriggersMeta(?string $table = null): array
 	{
 		$res = $this->query("
 			SELECT TRIM(RDB\$TRIGGER_NAME) AS TRIGGER_NAME,
@@ -642,7 +642,7 @@ class FirebirdDriver implements Dibi\Driver, Dibi\ResultDriver, Dibi\Reflector
 	 * Returns list of triggers for given table.
 	 * (Only if user has permissions on ALTER TABLE, INSERT/UPDATE/DELETE record in table)
 	 */
-	public function getTriggers(string $table = null): array
+	public function getTriggers(?string $table = null): array
 	{
 		$q = 'SELECT TRIM(RDB$TRIGGER_NAME)
 			FROM RDB$TRIGGERS

@@ -127,7 +127,7 @@ class MsSqlDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Begins a transaction (if supported).
 	 * @throws Dibi\DriverException
 	 */
-	public function begin(string $savepoint = null): void
+	public function begin(?string $savepoint = null): void
 	{
 		$this->query('BEGIN TRANSACTION');
 	}
@@ -137,7 +137,7 @@ class MsSqlDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Commits statements in a transaction.
 	 * @throws Dibi\DriverException
 	 */
-	public function commit(string $savepoint = null): void
+	public function commit(?string $savepoint = null): void
 	{
 		$this->query('COMMIT');
 	}
@@ -147,7 +147,7 @@ class MsSqlDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Rollback changes in a transaction.
 	 * @throws Dibi\DriverException
 	 */
-	public function rollback(string $savepoint = null): void
+	public function rollback(?string $savepoint = null): void
 	{
 		$this->query('ROLLBACK');
 	}

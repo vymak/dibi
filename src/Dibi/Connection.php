@@ -50,11 +50,11 @@ class Connection
 	 *       - run (bool) => enable profiler?
 	 *       - file => file to log
 	 *   - substitutes (array) => map of driver specific substitutes (under development)
-	 * @param  mixed   connection parameters
-	 * @param  string  connection name
+	 * @param  mixed        connection parameters
+	 * @param  string|null  connection name
 	 * @throws Exception
 	 */
-	public function __construct($config, string $name = null)
+	public function __construct($config, ?string $name = null)
 	{
 		if (is_string($config)) {
 			parse_str($config, $config);
@@ -179,7 +179,7 @@ class Connection
 	 * @see self::__construct
 	 * @return mixed
 	 */
-	final public function getConfig(string $key = null, $default = null)
+	final public function getConfig(?string $key = null, $default = null)
 	{
 		return $key === null
 			? $this->config
@@ -325,7 +325,7 @@ class Connection
 	 * Retrieves the ID generated for an AUTO_INCREMENT column by the previous INSERT query.
 	 * @throws Exception
 	 */
-	public function getInsertId(string $sequence = null): int
+	public function getInsertId(?string $sequence = null): int
 	{
 		$this->connected || $this->connect();
 		$id = $this->driver->getInsertId($sequence);
@@ -339,7 +339,7 @@ class Connection
 	/**
 	 * @deprecated
 	 */
-	public function insertId(string $sequence = null): int
+	public function insertId(?string $sequence = null): int
 	{
 		trigger_error(__METHOD__ . '() is deprecated, use getInsertId()', E_USER_DEPRECATED);
 		return $this->getInsertId($sequence);
@@ -349,7 +349,7 @@ class Connection
 	/**
 	 * Begins a transaction (if supported).
 	 */
-	public function begin(string $savepoint = null): void
+	public function begin(?string $savepoint = null): void
 	{
 		$this->connected || $this->connect();
 		$event = $this->onEvent ? new Event($this, Event::BEGIN, $savepoint) : null;
@@ -367,7 +367,7 @@ class Connection
 	/**
 	 * Commits statements in a transaction.
 	 */
-	public function commit(string $savepoint = null): void
+	public function commit(?string $savepoint = null): void
 	{
 		$this->connected || $this->connect();
 		$event = $this->onEvent ? new Event($this, Event::COMMIT, $savepoint) : null;
@@ -385,7 +385,7 @@ class Connection
 	/**
 	 * Rollback changes in a transaction.
 	 */
-	public function rollback(string $savepoint = null): void
+	public function rollback(?string $savepoint = null): void
 	{
 		$this->connected || $this->connect();
 		$event = $this->onEvent ? new Event($this, Event::ROLLBACK, $savepoint) : null;
@@ -539,7 +539,7 @@ class Connection
 	 * @param  callable $onProgress function (int $count, ?float $percent): void
 	 * @return int  count of sql commands
 	 */
-	public function loadFile(string $file, callable $onProgress = null): int
+	public function loadFile(string $file, ?callable $onProgress = null): int
 	{
 		return Helpers::loadFromFile($this, $file, $onProgress);
 	}

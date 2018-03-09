@@ -58,19 +58,19 @@ interface Driver
 	 * Begins a transaction (if supported).
 	 * @throws DriverException
 	 */
-	function begin(string $savepoint = null): void;
+	function begin(?string $savepoint = null): void;
 
 	/**
 	 * Commits statements in a transaction.
 	 * @throws DriverException
 	 */
-	function commit(string $savepoint = null): void;
+	function commit(?string $savepoint = null): void;
 
 	/**
 	 * Rollback changes in a transaction.
 	 * @throws DriverException
 	 */
-	function rollback(string $savepoint = null): void;
+	function rollback(?string $savepoint = null): void;
 
 	/**
 	 * Returns the connection resource.

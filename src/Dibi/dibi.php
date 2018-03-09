@@ -95,7 +95,7 @@ class dibi
 	 * Retrieve active connection.
 	 * @throws Dibi\Exception
 	 */
-	public static function getConnection(string $name = null): Dibi\Connection
+	public static function getConnection(?string $name = null): Dibi\Connection
 	{
 		if ($name === null) {
 			if (self::$connection === null) {
@@ -239,7 +239,7 @@ class dibi
 	 * Monostate for Dibi\Connection::getInsertId()
 	 * @throws Dibi\Exception
 	 */
-	public static function getInsertId(string $sequence = null): int
+	public static function getInsertId(?string $sequence = null): int
 	{
 		return self::getConnection()->getInsertId($sequence);
 	}
@@ -248,7 +248,7 @@ class dibi
 	/**
 	 * @deprecated
 	 */
-	public static function insertId(string $sequence = null): int
+	public static function insertId(?string $sequence = null): int
 	{
 		trigger_error(__METHOD__ . '() is deprecated, use getInsertId()', E_USER_DEPRECATED);
 		return self::getConnection()->getInsertId($sequence);
@@ -259,7 +259,7 @@ class dibi
 	 * Begins a transaction - Monostate for Dibi\Connection::begin().
 	 * @throws Dibi\Exception
 	 */
-	public static function begin(string $savepoint = null): void
+	public static function begin(?string $savepoint = null): void
 	{
 		self::getConnection()->begin($savepoint);
 	}
@@ -269,7 +269,7 @@ class dibi
 	 * Commits statements in a transaction - Monostate for Dibi\Connection::commit($savepoint = null).
 	 * @throws Dibi\Exception
 	 */
-	public static function commit(string $savepoint = null): void
+	public static function commit(?string $savepoint = null): void
 	{
 		self::getConnection()->commit($savepoint);
 	}
@@ -279,7 +279,7 @@ class dibi
 	 * Rollback changes in a transaction - Monostate for Dibi\Connection::rollback().
 	 * @throws Dibi\Exception
 	 */
-	public static function rollback(string $savepoint = null): void
+	public static function rollback(?string $savepoint = null): void
 	{
 		self::getConnection()->rollback($savepoint);
 	}

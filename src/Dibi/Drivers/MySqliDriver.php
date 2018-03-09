@@ -214,7 +214,7 @@ class MySqliDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Begins a transaction (if supported).
 	 * @throws Dibi\DriverException
 	 */
-	public function begin(string $savepoint = null): void
+	public function begin(?string $savepoint = null): void
 	{
 		$this->query($savepoint ? "SAVEPOINT $savepoint" : 'START TRANSACTION');
 	}
@@ -224,7 +224,7 @@ class MySqliDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Commits statements in a transaction.
 	 * @throws Dibi\DriverException
 	 */
-	public function commit(string $savepoint = null): void
+	public function commit(?string $savepoint = null): void
 	{
 		$this->query($savepoint ? "RELEASE SAVEPOINT $savepoint" : 'COMMIT');
 	}
@@ -234,7 +234,7 @@ class MySqliDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Rollback changes in a transaction.
 	 * @throws Dibi\DriverException
 	 */
-	public function rollback(string $savepoint = null): void
+	public function rollback(?string $savepoint = null): void
 	{
 		$this->query($savepoint ? "ROLLBACK TO SAVEPOINT $savepoint" : 'ROLLBACK');
 	}

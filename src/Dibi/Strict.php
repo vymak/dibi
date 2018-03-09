@@ -105,7 +105,7 @@ trait Strict
 	/**
 	 * @return mixed
 	 */
-	public static function extensionMethod(string $name, callable $callback = null)
+	public static function extensionMethod(string $name, ?callable $callback = null)
 	{
 		if (strpos($name, '::') === false) {
 			$class = get_called_class();

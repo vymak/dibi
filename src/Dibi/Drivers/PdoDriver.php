@@ -161,7 +161,7 @@ class PdoDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Begins a transaction (if supported).
 	 * @throws Dibi\DriverException
 	 */
-	public function begin(string $savepoint = null): void
+	public function begin(?string $savepoint = null): void
 	{
 		if (!$this->connection->beginTransaction()) {
 			$err = $this->connection->errorInfo();
@@ -174,7 +174,7 @@ class PdoDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Commits statements in a transaction.
 	 * @throws Dibi\DriverException
 	 */
-	public function commit(string $savepoint = null): void
+	public function commit(?string $savepoint = null): void
 	{
 		if (!$this->connection->commit()) {
 			$err = $this->connection->errorInfo();
@@ -187,7 +187,7 @@ class PdoDriver implements Dibi\Driver, Dibi\ResultDriver
 	 * Rollback changes in a transaction.
 	 * @throws Dibi\DriverException
 	 */
-	public function rollback(string $savepoint = null): void
+	public function rollback(?string $savepoint = null): void
 	{
 		if (!$this->connection->rollBack()) {
 			$err = $this->connection->errorInfo();

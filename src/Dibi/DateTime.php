@@ -20,7 +20,7 @@ class DateTime extends \DateTime
 	/**
 	 * @param  string|int
 	 */
-	public function __construct($time = 'now', \DateTimeZone $timezone = null)
+	public function __construct($time = 'now', ?\DateTimeZone $timezone = null)
 	{
 		if (is_numeric($time)) {
 			parent::__construct('@' . $time);
